@@ -10,7 +10,10 @@ const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+// </> JavaScript ────────────────────────────────
+app.get('/', (req, res) => {
+  res.send('DigiStore Africa fonctionne ✅');
+});
 // ─── Middleware ───────────────────────────────────────────
 app.use(cors());
 app.use(express.json());
@@ -209,10 +212,6 @@ app.get('/api/orders/:id', (req, res) => {
   const order  = orders.find(o => o.id === req.params.id);
   if (!order) return res.status(404).json({ success: false, message: 'Commande introuvable' });
   res.json({ success: true, data: { id: order.id, status: order.status, paidAt: order.paidAt } });
-});
-// </> JavaScript ────────────────────────────────
-app.get('/', (req, res) => {
-  res.send('DigiStore Africa fonctionne ✅');
 });
 // ─── SPA fallback ─────────────────────────────────────────
 app.get('*', (req, res) => {
