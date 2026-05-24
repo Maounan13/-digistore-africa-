@@ -210,7 +210,10 @@ app.get('/api/orders/:id', (req, res) => {
   if (!order) return res.status(404).json({ success: false, message: 'Commande introuvable' });
   res.json({ success: true, data: { id: order.id, status: order.status, paidAt: order.paidAt } });
 });
-
+// </> JavaScript ────────────────────────────────
+app.get('/', (req, res) => {
+  res.send('DigiStore Africa fonctionne ✅');
+});
 // ─── SPA fallback ─────────────────────────────────────────
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
